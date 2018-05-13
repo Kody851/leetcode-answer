@@ -1,3 +1,5 @@
+原题 ：https://leetcode.com/problems/two-sum/solution/
+中文版 ：https://leetcode-cn.com/problems/two-sum/description/
 1、<数组>Two Sum  
 （1）哈希表：
 定义 Map<Integer, Integer> map = new HashMap<>();
