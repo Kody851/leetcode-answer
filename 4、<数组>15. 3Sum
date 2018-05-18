@@ -1,0 +1,126 @@
+中文：https://leetcode-cn.com/problems/3sum/description/
+答案（牛客）：https://www.nowcoder.com/questionTerminal/345e2ed5f81d4017bbb8cc6055b0b711
+1、
+#include <vector>
+#include <algorithm> //使用sort函数
+using std::vector; 
+...   ...
+sort(num.begin(), num.end());//从小到大排序
+
+2、数组添加形如[1,-1,2]
+vector<vector<int>> ans;
+vector<int> temp(3);
+temp[0] = num[i];
+temp[1] = num[left];
+temp[2] = num[right];
+ans.push_back(temp);
+或者ans.push_back({num[i],num[left],num[right]});//不能用中括号
+3、我的代码（超出时间限制, O（n^3））
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        vector<vector<int>>outset; 
+        sort(nums.begin(),nums.end());
+        for(int i=0;i<nums.size()-2;i++){
+            if(i==0||(i>0&&nums[i]!=nums[i-1])){//第一个数字不出现重复
+              for(int j=i+1;j<nums.size()-1;j++){
+                for(int k=j+1;k<nums.size();k++){
+                    if(nums[i]+nums[j]+nums[k]==0){
+                        vector<int> temp(3);
+                        temp[0] = nums[i];
+                        temp[1] = nums[j];
+                        temp[2] = nums[k];
+                        outset.push_back(temp);
+                        
+                    }
+            
+                }
+            }
+          }
+        }
+        return outset;                            
+    }
+};
+4、牛客好答案
+链接：https://www.nowcoder.com/questionTerminal/345e2ed5f81d4017bbb8cc6055b0b711
+来源：牛客网
+class Solution {
+public:
+    vector<vector<int> > threeSum(vector<int> &num)
+    {
+         /// 先排序再双指针进行夹逼
+    int len = num.size();
+    vector<vector<int>> res;
+    if(len==0) return res;
+    sort(num.begin(),num.end());
+    for(int i=0;i<len;i++)
+    {
+        int sum = -num[i];
+        int j=i+1,k=len-1;
+        while(j<k)
+        {
+            int cur = num[j] + num[k];
+            if(cur==sum)
+            {
+               vector<int> temp;
+               temp.push_back(num[i]);
+               temp.push_back(num[j]);
+               temp.push_back(num[k]);
+               res.push_back(temp);
+               /// skip same num[j],num[k]
+               while(j<k && num[j]== temp[1])
+                    j++;
+               while(j<k && num[k]== temp[2])
+                    k--;
+            }
+            else if(cur<sum)
+                ++j;
+            else
+                --k;
+        }
+        /// skip same num[i]
+        while(i<len-1 && num[i]== num[i+1])
+            i++;
+    }
+    return res;
+    }
+};
+
+另一个 ：
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        vector<vector<int>> res;
+        int len = nums.size();
+        for(int k = 0; k < len; ++k){
+            if(nums[k] > 0)
+                break;
+             
+            if(k > 0 && nums[k] == nums[k-1])
+                continue;
+             
+            int tmp = -nums[k];
+            int i = k+1;
+            int j = len-1;
+            while(i < j){
+                if(nums[i] + nums[j] == tmp){
+                    res.push_back({nums[k], nums[i], nums[j]});
+                    while(i < j && nums[i] == nums[i+1])++i;
+                    while(i < j && nums[j] == nums[j-1])--j;
+                     
+                    ++i; --j;
+                }else if(nums[i] + nums[j] < tmp){
+                    ++i;
+                }else if(nums[i] + nums[j] > tmp){
+                    --j;
+                }
+            }
+        }
+         
+        return res;
+         
+    }
+     
+ 
+};
