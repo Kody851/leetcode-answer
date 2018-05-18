@@ -1,0 +1,30 @@
+https://leetcode-cn.com/problems/remove-element/description/
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        if(nums.size()==0) return 0;
+        int i=0;
+        for(int j=0;j<nums.size();j++){
+            if(nums[j]!=val){
+                nums[i]=nums[j];
+                i++;
+              }
+        }
+        return i;
+    }
+};
+注意 另一种思路：
+public int removeElement(int[] nums, int val) {
+    int i = 0;
+    int n = nums.length;
+    while (i < n) {
+        if (nums[i] == val) {
+            nums[i] = nums[n - 1];
+            // reduce array size by one
+            n--;
+        } else {
+            i++;
+        }
+    }
+    return n;
+}
