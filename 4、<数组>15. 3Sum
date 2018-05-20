@@ -60,13 +60,10 @@ public:
                     right--;
                     left++;
                     while(nums[left]==nums[left-1]) left++;
-                    while(nums[right]==nums[right+1]) right--;
-                    
+                    while(nums[right]==nums[right+1]) right--;   
                 }
                 else if(nums[i]+nums[left]+nums[right]>0) right--;
-                else left++;
-                
-                
+                else left++;  
             }
         }
         return output;
