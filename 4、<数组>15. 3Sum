@@ -41,6 +41,36 @@ public:
         return outset;                            
     }
 };
+修改后 正确答案：
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+        vector<vector<int>>output;
+        int len=nums.size();
+        if(len==0) return output;
+        for(int i=0;i<len;i++){
+            while(i>0&&nums[i]==nums[i-1]) i++;
+            int left=i+1;
+            int right=len-1;
+            while(left<right){
+                if(nums[i]+nums[left]+nums[right]==0) {
+                    output.push_back({nums[i],nums[left],nums[right]});
+                    right--;
+                    left++;
+                    while(nums[left]==nums[left-1]) left++;
+                    while(nums[right]==nums[right+1]) right--;
+                    
+                }
+                else if(nums[i]+nums[left]+nums[right]>0) right--;
+                else left++;
+                
+                
+            }
+        }
+        return output;
+    }
+};
 4、牛客好答案
 链接：https://www.nowcoder.com/questionTerminal/345e2ed5f81d4017bbb8cc6055b0b711
 来源：牛客网
