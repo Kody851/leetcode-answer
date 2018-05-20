@@ -50,7 +50,8 @@ public:
         int len=nums.size();
         if(len==0) return output;
         for(int i=0;i<len;i++){
-            while(i>0&&nums[i]==nums[i-1]) i++;
+            //去重
+            while(i>0&&nums[i]==nums[i-1]) i++;//特别注意，这里使用while而不是if，否则只判断一次。下同。
             int left=i+1;
             int right=len-1;
             while(left<right){
