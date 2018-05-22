@@ -15,3 +15,9 @@ public:
         return cash;
     }
 };
+
+   对于第i天的最大收益，应分成两种情况，一是该天结束后手里没有stock，可能是保持前一天的状态也可能是今天卖出了，此时令收益为cash；
+二是该天结束后手中有一个stock，可能是保持前一天的状态，也可能是今天买入了，用hold表示。由于第i天的情况只和i-1天有关，所以用两个变量cash和hold就可以，
+不需要用数组。
+ 来自：Leetcode算法学习日志-714 Best Time to Buy and Sell Stock with Transaction Fee - CSDN博客 
+ https://blog.csdn.net/zarlove/article/details/78323469
