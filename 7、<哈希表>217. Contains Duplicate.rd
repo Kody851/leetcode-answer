@@ -1,7 +1,7 @@
 原版：https://leetcode.com/problems/contains-duplicate/solution/（只有java）
 中文：https://leetcode-cn.com/problems/contains-duplicate/description/
 博客：leetcode 217 Contains Duplicate 数组中是否有重复的数字 - CSDN博客 https://blog.csdn.net/wangyaninglm/article/details/47380453
- ##1、哈希表
+##1、哈希表
 ###（1）支持的操作： 
 insert 插入元素 
 erase 删除元素 
