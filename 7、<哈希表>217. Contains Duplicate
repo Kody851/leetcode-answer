@@ -1,3 +1,41 @@
 原版：https://leetcode.com/problems/contains-duplicate/solution/（只有java）
 中文：https://leetcode-cn.com/problems/contains-duplicate/description/
 博客：leetcode 217 Contains Duplicate 数组中是否有重复的数字 - CSDN博客 https://blog.csdn.net/wangyaninglm/article/details/47380453
+##1、哈希表
+###（1）支持的操作： 
+insert 插入元素 
+erase 删除元素 
+search 搜索元素
+###（2）C++ 11中出现了两种新的关联容器:unordered_set和unordered_map，其内部实现与set和map大有不同，set和map内部实现是基于RB-Tree，
+ 而unordered_set和unordered_map内部实现是基于哈希表(hashtable)。
+ 哈希表的定义：
+ #include<unordered_set>
+ unordered_set<int> hashset
+ 然后就可以使用：
+ if(hashset.find(i)==hashset.end()) //这表明hashset中没有元素i
+ hashset.insert(i) //插入元素i
+ ###代码
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums){
+        unordered_set<int> hashset;
+        for(int i=0;i<nums.size();++i){
+            if(hashset.find(nums[i]!=hashset.end)) return true;
+            else hashset.insert(nums[i]);               
+        }
+        return false;
+    }
+};
+##2、排序
+Time complexity : O(n \log n)O(nlogn). Sorting is O(n \log n)O(nlogn) and the sweeping is O(n)O(n). 
+The entire algorithm is dominated by the sorting step, which is O(n \log n)O(nlogn).
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums) {
+    sort(nums.begin(),nums.end());
+    for(int i=0;i<nums.size()-1;i++){
+          if(nums[i]==nums[i+1]) return true;
+        }
+    return false; 
+    }
+};
