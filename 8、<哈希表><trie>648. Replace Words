@@ -18,15 +18,53 @@
   vector<string> dict={"cat", "bat", "rat"}; //vector[0]="cat"
   string word=vector[0];//word[0]=c
   char x=word[0];
+  
+  set<string> a;
  
 2、哈希表
+ 
+我：
+class Solution {
+public:
+    string replaceWords(vector<string>& dict, string sentence) {
+        //定义哈希表
+        set<string> hashset;
+        for(auto dic:dict) hashset.insert(dic);
+        //把sentence中的单词提取出来(使用两个指针)
+        vector<string> words;
+        for(int i=0,j=0;i<sentence.size()&&j<=sentence.size();j++){
+            if(sentence[j]==' '||j==sentence.size()){
+                words.push_back(sentence.substr(i,j-i)); //特别注意j可取到sentence.size()，i的位置与索引的关系
+                i=j+1;
+            }
+        }
+        //对words中每一个单词，在hashset中查找词根
+        for(int i=0;i<words.size();i++){
+            for(int j=0;j<words[i].size();j++){
+                if(hashset.find(words[i].substr(0,j))!=hashset.end()){
+                    words[i]=words[i].substr(0,j);
+                }
+            }
+        }
+        //生成输出字符串
+        string output;
+        for(int i=0;i<words.size()-1;i++){
+            output.append(words[i]);
+            output.append(" ");
+        }
+        output.append(words[words.size()-1]);
+        return output;
+    }
+};
+
+
 https://www.cnblogs.com/wdw828/p/7237413.html
 class Solution {
 public:
     string replaceWords(vector<string>& dict, string sentence) {
         // add the dict into a set to search
         set<string> ht;
-        for(auto dic : dict){
+        for(auto dic : dict){  //auto自动确定类型
             ht.insert(dic);
         }
         // partition the sentences into words
