@@ -15,6 +15,10 @@
   std::size_t found = a.find(b);//在str当中查找第一个出现的needle，找到则返回出现的位置，否则返回结尾
   found=str.find("needles are small",found+1,6); //在str当中，从第found+1的位置开始查找参数字符串的前6个字符
   
+  vector<string> dict={"cat", "bat", "rat"}; //vector[0]="cat"
+  string word=vector[0];//word[0]=c
+  char x=word[0];
+ 
 2、哈希表
 https://www.cnblogs.com/wdw828/p/7237413.html
 class Solution {
