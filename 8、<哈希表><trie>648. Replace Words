@@ -1,0 +1,112 @@
+原版：https://leetcode.com/problems/replace-words/solution/（无c++）
+中文：https://leetcode-cn.com/problems/replace-words/description/
+1、字符串的基本操作(C++ string的用法和例子 - CSDN博客 https://blog.csdn.net/tengfei461807914/article/details/52203202)
+  (std::string a="abcdefg";)
+  string a="abcdefg";
+  string b=a.substr(2,3);//b="bcd"
+  b.insert(b.size(),"e");//b="bcde"
+  b.append("f");//b="bcdef"
+  a.erase(a.begin()+2,a.end()-1);//a="abg"
+  b.erase(2,2);//b="bcf"
+  a.replace(2,2,b);//a="abcf"
+  string d;
+  d.assign(a,2,3);//d="bcf"
+  
+  std::size_t found = a.find(b);//在str当中查找第一个出现的needle，找到则返回出现的位置，否则返回结尾
+  found=str.find("needles are small",found+1,6); //在str当中，从第found+1的位置开始查找参数字符串的前6个字符
+  
+2、哈希表
+https://www.cnblogs.com/wdw828/p/7237413.html
+class Solution {
+public:
+    string replaceWords(vector<string>& dict, string sentence) {
+        // add the dict into a set to search
+        set<string> ht;
+        for(auto dic : dict){
+            ht.insert(dic);
+        }
+        // partition the sentences into words
+        vector<string> words;
+        for(int i = 0, j = 0; i < sentence.size() && j <= sentence.size(); j++){
+            if(sentence[j] == ' ' || j == sentence.size()){
+                words.push_back(sentence.substr(i, j - i));//a.substr(m,n)表示返回字符串a位置为m（从1开始）后面的n个字符组成的串
+                i = j + 1;
+            }
+        }
+        // find root in dictionary
+        for(int i = 0; i < words.size(); i++){
+            for(int j = 0; j < words[i].size(); j++){
+                if(ht.find(words[i].substr(0, j + 1)) != ht.end()){
+                    words[i] = words[i].substr(0, j + 1); 
+                    break;
+                }
+            }
+        }
+        // build the whole sentence
+        string ans = words[0];
+        for(int i = 1; i < words.size(); i++){
+            ans += " " + words[i];
+        }
+        return ans;
+    }
+};
+
+3、Trie，根据字典构建字典树，然后对sentence分词，逐个比较，最后拼接成结果字符串，返回
+typedef struct Trie_node   {
+    bool exist; /// 标记该结点处是否构成单词
+    struct Trie_node* next[26]; /// 指向各个子树的指针
+    Trie_node() : exist(false) {
+        memset(next, 0, sizeof(Trie_node*)*26);
+    }
+} TrieNode, *Trie;
+
+class Solution {
+public:
+    string replaceWords(vector<string>& dict, string sentence) {
+        string res;
+        if(sentence.length() == 0)
+            return res;
+
+        Trie root = new TrieNode();
+        buildTrie(root, dict);
+
+        stringstream ss(sentence);
+        string temp;
+        ss >> temp;
+        res += findStr(root, temp);
+        while(ss >> temp)
+            res += " " + findStr(root, temp);
+        return res;
+    }
+
+    void buildTrie(Trie root, const vector<string>& dict) {
+        int index;
+        for(int j=0; j<dict.size(); ++j) {
+            Trie p = root;
+            int i = 0;
+            for(; i<dict[j].length(); ++i) {
+                index = dict[j][i]-'a';
+                if(p->next[index] == NULL)
+                    p->next[index] = new TrieNode();
+                p = p->next[index];
+                if(i == dict[j].length()-1)
+                    p->exist = true;
+            }
+        }
+    }
+
+    string findStr(Trie root, const string& str) {
+        Trie p = root;
+        int index;
+        for(int i=0; i<str.length(); ++i) {
+            index = str[i]-'a';
+            if(p->next[index]) {
+                if(p->next[index]->exist)
+                    return str.substr(0, i+1);
+                p = p->next[index];
+            } else
+                return str;
+        }
+        return str;
+    }
+};
