@@ -1,2 +1,64 @@
 中文：https://leetcode-cn.com/problems/delete-node-in-a-linked-list/description/
-原版：https://leetcode-cn.com/problems/delete-node-in-a-linked-list/description/
+原版：https://leetcode.com/problems/delete-node-in-a-linked-list/solution/
+思路：从链表中，删除指定的节点，但又没有给出前指针，所以先交换当前节点和下一节点的值，然后删除下一节点即可。
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+1、
+class Solution {
+public:
+    void deleteNode(ListNode* node) {
+        if (!node || !node->next)  
+            return;  
+        node->val = node->next->val;  
+        node->next = node->next->next;  
+    }
+};
+2、
+void deleteNode(ListNode* node) {
+        if (node == NULL) {}
+        else {
+            ListNode* tmp = node->next;
+            node->val = tmp->val;
+            node->next = tmp->next;
+            delete tmp;
+        }
+    }
+3、
+void deleteNode(struct ListNode* node) {
+    struct ListNode *p = node->next;
+     
+    if(!node)
+        return;//如果node是空就直接返回
+     
+    memcpy(node, node->next, sizeof(struct ListNode));//memcpy用来做内存拷贝，你可以拿它拷贝任何数据类型的对象，可以指定拷贝的数据长度
+    free(p);
+}
+
+4、知识点
+new/delete     malloc/free
+1)它们都可用于申请动态内存和释放内存｡
+2)malloc是库函数只能作用于内部数据类型,对于非内部数据动态对象而言,就不能完成对象的初始化与销毁,即执行构造函数与析构函数,
+  而new 与 delete此类运算符就能够在编译器的控制权限内完成,对象的初始化与销毁任务,即执行构造函数与析构函数｡
+
+void *malloc(int size);
+说明：malloc 向系统申请分配指定size个字节的内存空间。返回类型是 void* 类型。void* 表示未确定类型的指针。C,C++规定，void* 类型可以强制转换
+为任何其它类型的指针。
+从函数声明上可以看出。malloc 和 new 至少有两个不同: new 返回指定类型的指针，并且可以自动计算所需要大小。比如：
+  int *p;
+　p = new int; //返回类型为int* 类型(整数型指针)，分配大小为 sizeof(int);
+或：int* parr;
+    parr = new int [100]; //返回类型为 int* 类型(整数型指针)，分配大小为 sizeof(int) * 100;
+而 malloc 则必须由我们计算要字节数，并且在返回后强行转换为实际类型的指针。
+    int* p;
+    p = (int *) malloc (sizeof(int));
+　　第一、malloc 函数返回的是 void * 类型，如果你写成：p = malloc (sizeof(int)); 则程序无法通过编译，报错：“不能将 void* 赋值给 int * 类型变量”。
+所以必须通过 (int *) 来将强制转换。
+　　第二、函数的实参为 sizeof(int) ，用于指明一个整型数据需要的大小.
+  
+  int  a=10; int  *arr=(int *) malloc(sizeof (int)* a);
