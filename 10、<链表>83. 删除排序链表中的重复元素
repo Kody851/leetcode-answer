@@ -1,7 +1,7 @@
 中文：https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/description/
 答案：LeetCode(83)Remove Duplicates from Sorted List - CSDN博客 https://blog.csdn.net/feliciafay/article/details/18072359
  
-暂时解答错误:
+解答错误:
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -36,3 +36,21 @@ public:
 [1,1,2]
 预期：
 [1,2]
+
+修改后 :
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        ListNode* current=head;
+        while(current!=NULL&&current->next!=NULL){
+            if(current->val==current->next->val){
+                current->next=current->next->next;
+            }
+            else{
+                current=current->next;
+            }
+        }
+        return head;
+    }
+};
+ 
