@@ -1,1 +1,40 @@
 中文：https://leetcode-cn.com/problems/remove-linked-list-elements/description/
+我的解答：
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* removeElements(ListNode* head, int val) {
+        ListNode* cur=head;
+        //确保头指针不是val
+        while(cur!=NULL){
+            if(cur->val==val){
+                head=head->next;
+                cur=cur->next;
+            }
+            else break;//跳出while循环
+        }
+        if(cur==NULL) return NULL;//若最后的cur为NULL，说明整个链表全是val，链表清空了。
+        
+        //当前节点若等于val，则把前一个节点的指针指向当前节点的下一个节点
+        ListNode* before=head;
+        ListNode* current=head->next;
+        while(current!=NULL){
+            if(current->val==val){
+                before->next=current->next;
+                current=current->next;
+            }
+            else{
+                before=current;
+                current=current->next;
+            }
+        }
+        return head;
+    }
+};
