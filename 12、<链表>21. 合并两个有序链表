@@ -1,0 +1,6 @@
+中文：https://leetcode-cn.com/problems/merge-two-sorted-lists/description/
+ ListNode* cur1=l1;
+        ListNode* cur2=l2;
+        if(cur2->val>=cur1->val&&cur2->val>=cur1->val){
+            
+        }
