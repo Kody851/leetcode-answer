@@ -1,4 +1,5 @@
 中文：https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/description/
+原版：https://leetcode.com/problems/remove-duplicates-from-sorted-list/solution/
 答案：LeetCode(83)Remove Duplicates from Sorted List - CSDN博客 https://blog.csdn.net/feliciafay/article/details/18072359
  
 解答错误:
@@ -41,7 +42,7 @@ public:
 class Solution {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
-        ListNode* current=head;
+        ListNode* current=head;//用一个就很清晰！越简单越好！
         while(current!=NULL&&current->next!=NULL){
             if(current->val==current->next->val){
                 current->next=current->next->next;
