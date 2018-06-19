@@ -1,6 +1,6 @@
 中文：https://leetcode-cn.com/problems/merge-two-sorted-lists/description/
 博客：https://blog.csdn.net/sqiu_11/article/details/70598128
-
+方法1：遍历
  /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -42,3 +42,19 @@ public:
         return head->next;//若return head;则：[-1,1,1,2,3,4,4]
     }
 };
+方法2：递归（不好想）
+class Solution {  
+public:  
+    ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) {  
+        if(l1 == NULL) return l2;//返回较长的链表；  
+        if(l2 == NULL) return l1;  
+  
+        if(l1->val < l2->val) {  
+            l1->next = mergeTwoLists(l1->next, l2);  
+            return l1;//跳到下一个节点  
+        } else {  
+            l2->next = mergeTwoLists(l2->next, l1);  
+            return l2;//将短链表l1按顺序插进l2中。  
+        }  
+    }  
+};  
