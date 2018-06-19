@@ -42,7 +42,7 @@ public:
         return head->next;//若return head;则：[-1,1,1,2,3,4,4]
     }
 };
-方法2：递归（不好想）
+方法2：递归（不好想！！！！！！！！！！！！！！！！！！！！！）
 class Solution {  
 public:  
     ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) {  
