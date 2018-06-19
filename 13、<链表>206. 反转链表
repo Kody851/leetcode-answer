@@ -1,1 +1,20 @@
 中文：https://leetcode-cn.com/problems/reverse-linked-list/description/
+博客：https://blog.csdn.net/u012501459/article/details/47144951
+
+1、迭代
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode* first=NULL;
+        ListNode* second=head;
+        ListNode* third=NULL;
+        while(second){
+            third=second->next;//当前的下一节点
+            second->next=first;//当前节点的指针指向上一个
+            first=second;
+            second=third;
+            //到最后：second和third都变成了NULL，first为最后一个节点
+        }
+        return first;
+    }
+};
