@@ -1,0 +1,34 @@
+147. 对链表进行插入排序
+https://leetcode-cn.com/problems/insertion-sort-list/description/
+博客： https://www.cnblogs.com/ganganloveu/p/3959331.html
+ 
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* insertionSortList(ListNode* head) {
+        if(!head||!head->next) return head;
+        ListNode* sortedHead=new ListNode(-1);
+        
+        while(head!=NULL){
+            ListNode* cur=sortedHead;//这里不能用sortedHead->next，否则后面使用cur->next                                      //会报错
+            ListNode* tmp=head->next;//这里使用临时变量是必要的
+            //比较大小
+            while(cur->next!=NULL&&cur->next->val<head->val){
+                cur=cur->next;
+            }
+            //插入          
+            head->next=cur->next;
+            cur->next=head;
+            //head更新；不能使用head=head->next，因为head->next已被重新赋值，需要使用tmp
+            head=tmp;
+        }
+        return sortedHead->next;
+    }
+};
