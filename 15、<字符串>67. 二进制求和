@@ -26,6 +26,7 @@ public:
             result = char( c% 2 + '0') + result; //c% 2为本位结果； char( c% 2 + '0')代表ASCII码为 c% 2 + '0'的字符，等价于char(c%2+48)
                                                 //注： int x='0';与char x=48;都是可行的
                                                 //这里char与string是可以相加的，但结果要赋值给string型
+                                                //这里的相加是有先后顺序的，result是从后面向前算的，故result中间结果放后面
             c /= 2;  // c/2为本位进位
               
         }  
