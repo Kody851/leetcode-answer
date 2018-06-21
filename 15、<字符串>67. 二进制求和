@@ -4,3 +4,33 @@ https://leetcode-cn.com/problems/add-binary/description/
 leetcode 67 Add Binary - CSDN博客 https://blog.csdn.net/wangyaninglm/article/details/46766027
 67. Add Binary - 简书 https://www.jianshu.com/p/402edf70b3f4
 Add Binary | leetcode 67 【Java解题报告】 - CSDN博客 https://blog.csdn.net/happyaaaaaaaaaaa/article/details/48896239
+
+class Solution {  
+public:  
+    string addBinary(string a, string b)   
+    {  
+          
+        string result = "";  
+        int c = 0;  
+        int i = a.size() - 1;  //从最低位开始
+        int j = b.size() - 1;  
+          
+        while(i >= 0 || j >=0 ||c ==1)  //a,b还有未到最高位的，或两者都到了最高位但还有进位
+        {  
+            c += i >= 0 ? a[i--] - '0':0;  //若i>=0，c=c+a[i--] - '0';否则，c=c+0.
+                                          //如果i>=0,说明a还没到头，把该位上的数取出来即a[i--] - '0'，此时i-1在下一轮才生效；
+                                          //因为c是int型的，而字符串a中的元素是char型，故采用a[i--] - '0'，其结果只能为0或1；
+                                         //注：‘0’的ASCII码为48，a[i--]取值为48或49。（‘0’或‘1’）
+            
+            c += j >= 0 ? b[j--] - '0':0; //加上b的本位
+            result = char( c% 2 + '0') + result; //c% 2为本位结果； char( c% 2 + '0')代表ASCII码为 c% 2 + '0'的字符，等价于char(c%2+48)
+                                                //注： int x='0';与char x=48;都是可行的
+            c /= 2;  // c/2为本位进位
+              
+        }  
+          
+        return result;  
+          
+          
+    }  
+};  
