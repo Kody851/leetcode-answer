@@ -1,1 +1,39 @@
 https://leetcode-cn.com/problems/valid-perfect-square/description/
+博客：[LeetCode] Valid Perfect Square 检验完全平方数 - Grandyang - 博客园 https://www.cnblogs.com/grandyang/p/5619296.html
+我 ：
+1、粗暴法，很low
+class Solution {
+public:
+    bool isPerfectSquare(int num) {
+        if(num==1) return true;//考虑1的情况
+        int i=1;
+        while(i<=num/2){
+            if(i*i==num) return true;
+            i++;
+        }
+        return false;
+    }
+};
+可以这么简单修改：
+bool isPerfectSquare(int num) {
+        if(num==1) return true;
+        int i=1;
+        while(i<=num/i){ //即i^2<=num
+            if(i*i==num) return true;
+            i++;
+        }
+        return false;
+    }
+2、二分法
+bool isPerfectSquare(int num) {
+        if(num==1) return true;
+        long left=0,right=num;//此题可以用right=num/2
+        while(left<=right){
+            long mid=(left+right)/2;
+            long val=mid*mid;
+            if(val==num) return true;
+            else if(val>num) right=mid-1;
+            else left=mid+1;
+        }
+        return false;
+    }
