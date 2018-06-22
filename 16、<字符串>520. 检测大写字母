@@ -1,2 +1,16 @@
 检测大写字母 - LeetCode (中国) https://leetcode-cn.com/problems/detect-capital/description/
 博客:
+我的：
+class Solution {
+public:
+    bool detectCapitalUse(string word) {
+        if (word.size()==1) return true;//如果只有一个字母，肯定对
+        int num=0;//num用来记录大写字母个数
+        for(int i=0;i<word.size();i++){
+            if(word[i]<=90) num++;//大写字母的ASCII码范围：65~90；小写字母：97~122。
+        }
+        if(num==word.size()||num==0) return true;//全是大写字母或小写字母，对。
+        if((num==1)&&(word[0]<=90)) return true;//仅有一个大写字母且是第一个，对。
+        return false;//其他，错
+    }
+};
