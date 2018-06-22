@@ -11,6 +11,20 @@ public:
         return reverse;
     }
 };
+修改！ 
+class Solution {
+public:
+    string reverseString(string s) {
+        if(s.size()<=1) return s;
+        string reverse="";
+        int i=s.size()-1;
+        while(i>=0){  //使用while会好一些
+        reverse+=s[i];
+        i--;
+        }
+        return reverse;
+    }
+};
 2、交换首尾，时间缩小一半，无需辅助空间
 class Solution {
 public:
@@ -25,3 +39,22 @@ public:
         return s;
     }
 };
+改用 while循环：
+class Solution {  
+public:  
+    string reverseString(string s) {  
+        string re = s;  
+        int len = s.length();  
+        if(len==0) return re;  
+        int i = 0, j =len-1;  
+        while(i<j)  
+        {  
+            char tmp = re[i];  
+            re[i] = re[j];  
+            re[j] = tmp;  
+            i++;  
+            j--;  
+        }  
+        return re;  
+    }  
+};  
