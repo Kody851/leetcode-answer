@@ -58,3 +58,24 @@ public:
         return re;  
     }  
 };  
+3、栈！！
+class Solution {
+public:
+    string reverseString(string s) {
+        if(s.size()<=1) return s;
+        string reverse;
+        stack<char>stk;//定义栈，<char>
+        int i=0;
+        while(i<s.size()){
+            stk.push(s[i]); //压入栈，.push,而不是.push_back
+            i++;
+        }
+        while(!stk.empty()){ //不是空；.empty()
+            char tmp=stk.top();//顶部元素.top()
+            reverse.push_back(tmp);//字符串末尾追加：.push_back()
+            stk.pop();//弹出：.pop()
+        }
+        
+        return reverse;
+    }
+};
