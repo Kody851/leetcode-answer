@@ -1,2 +1,11 @@
 https://leetcode-cn.com/problems/binary-tree-level-order-traversal/description/
 [LeetCode] Binary Tree Level Order Traversal 二叉树层序遍历 - Grandyang - 博客园 https://www.cnblogs.com/grandyang/p/4051321.html
+
+由于需要把每层的节点分别放入到数组中，因此需要引入变量n记录每层的节点数量。剩下的，就是广度优先搜索的方法了。
+
+广度优先搜索算法（Breadth First Search），又叫宽度优先搜索，或横向优先搜索。从根节点开始，沿着树的宽度遍历树的节点。如果所有节点均被访问，则算法中止。借助队列数据结构，由于队列是先进先出的顺序，因此可以先将左子树入队，然后再将右子树入队。这样一来，左子树结点就存在队头，可以先被访问到。
+
+时间复杂度：O(n)
+
+空间复杂度：O(n)
+
