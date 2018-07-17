@@ -1,4 +1,4 @@
-原版：https://leetcode.com/problems/remove-element/solution/
+原版：Remove Element：https://leetcode.com/problems/remove-element/solution/
 中文：https://leetcode-cn.com/problems/remove-element/description/
 class Solution {
 public:
