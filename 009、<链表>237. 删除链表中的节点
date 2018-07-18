@@ -1,3 +1,4 @@
+Delete Node in a Linked List
 中文：https://leetcode-cn.com/problems/delete-node-in-a-linked-list/description/
 原版：https://leetcode.com/problems/delete-node-in-a-linked-list/solution/
 思路：从链表中，删除指定的节点，但又没有给出前指针，所以先交换当前节点和下一节点的值，然后删除下一节点即可。
