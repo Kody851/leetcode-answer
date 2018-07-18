@@ -4,7 +4,7 @@ Replace Words
 1、字符串的基本操作(C++ string的用法和例子 - CSDN博客 https://blog.csdn.net/tengfei461807914/article/details/52203202)
   (std::string a="abcdefg";)
   string a="abcdefg";
-  string b=a.substr(2,3);//b="bcd"
+  string b=a.substr(1,3);//b="bcd"
   b.insert(b.size(),"e");//b="bcde"
   b.append("f");//b="bcdef"
   a.erase(a.begin()+2,a.end()-1);//a="abg"
