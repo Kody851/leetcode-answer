@@ -28,6 +28,7 @@ public:
                 tmp=tmp->next;
             }
         }
+        //l1与l2可能长度不同
         while(!l1&&l2){
             tmp->next=l2;
             l2=l2->next;
