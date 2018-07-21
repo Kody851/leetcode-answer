@@ -53,7 +53,8 @@ public:
         if(l1->val < l2->val) {  
             l1->next = mergeTwoLists(l1->next, l2);  
             return l1;//跳到下一个节点  
-        } else {  
+        } 
+        else {  
             l2->next = mergeTwoLists(l2->next, l1);  
             return l2;//将短链表l1按顺序插进l2中。  
         }  
