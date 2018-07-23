@@ -72,7 +72,7 @@ public:
         }
         while(!stk.empty()){ //不是空；.empty()
             char tmp=stk.top();//顶部元素.top()
-            reverse.push_back(tmp);//字符串末尾追加：.push_back()
+            reverse.push_back(tmp);//字符串末尾追加：.push_back()。//也可使用reverse+=temp;
             stk.pop();//弹出：.pop()
         }
         
