@@ -23,7 +23,7 @@ public:
             while(cur->next!=NULL&&cur->next->val<head->val){
                 cur=cur->next;
             }
-            //插入          
+            //插入 （把head插入到cur与cur->next之间）         
             head->next=cur->next;
             cur->next=head;
             //head更新；不能使用head=head->next，因为head->next已被重新赋值，需要使用tmp
