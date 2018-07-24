@@ -8,4 +8,52 @@ https://leetcode-cn.com/problems/binary-tree-level-order-traversal/description/
 时间复杂度：O(n)
 
 空间复杂度：O(n)
-
+1、迭代
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        vector<vector<int>>res;//用于存放最终结果
+        if(root==NULL) return res;
+        queue<TreeNode*> q;
+        q.push(root);
+        while(!q.empty()){
+            vector<int>onelevel;//每一层元素的存放
+            int size=q.size();//每一层元素的个数
+            for(int i=0;i<size;++i){
+                TreeNode* node=q.front();
+                q.pop();
+                onelevel.push_back(node->val);
+                if(node->left) q.push(node->left);
+                if(node->right) q.push(node->right);
+            }
+            res.push_back(onelevel);
+        }
+        return res;
+    }
+    
+};
+2、递归（待续！！！）
+class Solution {
+public:
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        vector<vector<int> > res;
+        levelorder(root, 0, res);
+        return res;
+    }
+    void levelorder(TreeNode *root, int level, vector<vector<int> > &res) {
+        if (!root) return;
+        if (res.size() == level) res.push_back({});
+        res[level].push_back(root->val);
+        if (root->left) levelorder(root->left, level + 1, res);
+        if (root->right) levelorder(root->right, level + 1, res);
+    }
+};
