@@ -1,0 +1,51 @@
+179. Largest Number
+https://leetcode-cn.com/problems/largest-number/description/
+博客：https://blog.csdn.net/will130/article/details/51635941
+
+@知识点
+1、c++中单引号和双引号的区别
+在C++中单引号表示字符，双引号表示字符串。
+例如 ：在定义一个数组的时候string a [5]={"nihao","henhao","good","en","h"};
+定义的是一个字符串数组，这是字符串元素要用双引号。
+char  b[5]={'a','b','c','d','e'};
+定义的是一个字符数组，元素要用单引号。
+要注意元素的输出不同：
+int  a=10;
+cout<<"a";输出为 字符a;
+cout<<a;输出为10；
+cout<<'a' ;输出为65；
+2、sort函数
+sort函数详解（史上最完整QAQ）https://www.cnblogs.com/AlvinZH/p/6784862.html?utm_source=itdadao&utm_medium=referral
+#include <algorithm>
+using namespace std;
+int A[100];
+bool cmp1(int a,int b)//int为数组数据类型
+{
+    return a>b;//降序排列
+    //return a<b;//默认的升序排列
+}
+sort(A,A+100,cmp1);
+
+@代码
+class Solution {
+public:
+    string largestNumber(vector<int>& nums) {
+        int n=nums.size();
+        vector<string>strnums(n);
+        for(int i=0;i<n;i++){
+            strnums[i]=to_string(nums[i]);//转字符串：to_string()
+        }
+        sort(strnums.begin(),strnums.end(),cmp);
+        string res="";
+        for(int i=0;i<n;i++){
+            res+=strnums[i];
+        }
+        if(res[0]=='0') return "0";
+        return res;
+    }
+    static bool cmp(string a,string b){
+        string ab=a+b;
+        string ba=b+a;
+        return ab>ba;
+    }
+};
