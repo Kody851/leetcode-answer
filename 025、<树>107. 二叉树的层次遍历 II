@@ -12,3 +12,77 @@ v.insert(v.end(),3);//在向量末尾追加新元素。
 2、
  rbegin和rend，很有用！_Canny_新浪博客 http://blog.sina.com.cn/s/blog_59fabe0301019457.html
  
+1、先至顶向下
+class Solution {
+public:
+    vector<vector<int>> levelOrderBottom(TreeNode* root) {
+        vector<vector<int>>res;//用于存放最终结果
+        if(root==NULL) return res;
+        queue<TreeNode*> q;
+        q.push(root);
+        while(!q.empty()){
+            vector<int>onelevel;//每一层元素的存放
+            int size=q.size();//每一层元素的个数
+            for(int i=0;i<size;++i){
+                TreeNode* node=q.front();
+                q.pop();
+                onelevel.push_back(node->val);
+                if(node->left) q.push(node->left);
+                if(node->right) q.push(node->right);
+            }
+            res.push_back(onelevel);
+        }
+        vector<vector<int>>res2;
+        for(int i=res.size()-1;i>=0;i--){
+            res2.push_back(res[i]);//反过来
+        }
+        return res2;
+    }
+};
+2、使用insert反向插
+class Solution {
+public:
+    vector<vector<int>> levelOrderBottom(TreeNode* root) {
+        vector<vector<int>>res;//用于存放最终结果
+        if(root==NULL) return res;
+        queue<TreeNode*> q;
+        q.push(root);
+        while(!q.empty()){
+            vector<int>onelevel;//每一层元素的存放
+            int size=q.size();//每一层元素的个数
+            for(int i=0;i<size;++i){
+                TreeNode* node=q.front();
+                q.pop();
+                onelevel.push_back(node->val);
+                if(node->left) q.push(node->left);
+                if(node->right) q.push(node->right);
+            }
+            res.push_back(onelevel);
+            res.insert(res.begin(),onelevel);//从前面插入
+        }
+        return res;
+    }
+};
+3、
+class Solution {
+public:
+    vector<vector<int>> levelOrderBottom(TreeNode* root) {
+        vector<vector<int>>res;//用于存放最终结果
+        if(root==NULL) return res;
+        queue<TreeNode*> q;
+        q.push(root);
+        while(!q.empty()){
+            vector<int>onelevel;//每一层元素的存放
+            int size=q.size();//每一层元素的个数
+            for(int i=0;i<size;++i){
+                TreeNode* node=q.front();
+                q.pop();
+                onelevel.push_back(node->val);
+                if(node->left) q.push(node->left);
+                if(node->right) q.push(node->right);
+            }
+            res.push_back(onelevel);
+        }
+        return vector<vector<int>>(res.rbegin(),res.rend());
+    }
+};
