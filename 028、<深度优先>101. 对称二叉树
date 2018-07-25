@@ -1,2 +1,30 @@
 101. Symmetric Tree
 https://leetcode-cn.com/problems/symmetric-tree/description/
+博客 ：https://blog.csdn.net/feliciafay/article/details/18397183
+1、递归
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool isSymmetric(TreeNode* root) {
+        if(root==NULL) return true;
+        return symmetric(root->left,root->right);//自己写的函数
+    }
+private:
+    bool symmetric(TreeNode* left_node,TreeNode* right_node){
+        if(left_node!=NULL&&right_node!=NULL&&left_node->val==right_node->val){
+            return symmetric(left_node->left,right_node->right)&&symmetric(left_node->right,right_node->left);//左节点的左子点与
+            //右节点的右子点要相同，左节点的右子点与右节点的左子点要相同。
+        
+        }
+        else if(left_node==NULL&&right_node==NULL) return true;
+        else return false;
+    }
+};
