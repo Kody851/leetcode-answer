@@ -28,3 +28,38 @@ private:
         else return false;
     }
 };
+2、迭代
+class Solution {
+public:
+        bool isSymmetric(TreeNode *root) {
+        vector<TreeNode*>node_vector;
+        if(root==NULL) return true;
+        node_vector.push_back(root->left);
+        node_vector.push_back(root->right);
+        while(!node_vector.empty()){
+            vector<TreeNode*>node_vector_temp;//用于更新node_vector内容的临时变量
+            int i=0;
+            int j=node_vector.size()-1;
+            while(i<j){
+               if(node_vector[i]==NULL&&node_vector[j]!=NULL||node_vector[i]!=NULL&&node_vector[j]==NULL)
+                    return false;
+                if(node_vector[i]!=NULL&&node_vector[j]!=NULL&&node_vector[i]->val!=node_vector[j]->val)
+                    return false;
+                i++;
+                j--; 
+            }
+            for(int i=0;i<node_vector.size();i++){
+                if(node_vector[i]!=NULL){
+                    node_vector_temp.push_back(node_vector[i]->left);
+                    node_vector_temp.push_back(node_vector[i]->right);
+                }
+            }
+            node_vector.swap(node_vector_temp);//同一深度的所有节点  更新node_vector
+            
+        }
+        return true;
+    }
+};
+ 
+知识点 
+ node_vector.swap(node_vector_temp)
