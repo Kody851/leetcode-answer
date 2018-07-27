@@ -1,0 +1,20 @@
+70. Climbing Stairs
+https://leetcode-cn.com/problems/climbing-stairs/description/
+
+class Solution {
+public:
+    int climbStairs(int n) {
+        if(n==1) return 1;
+        if(n==2) return 2;
+        //return climbStairs(n-1)+climbStairs(n-2);//递归超时
+        vector<int>x(n);
+        x[0]=1;
+        x[1]=2;
+        for(int i=2;i<n;i++){
+            x[i]=x[i-1]+x[i-2];
+        }
+        return x[n-1];
+    }
+};
+n为1，2的时候很好验证，当n>=3的时候，有两种攀爬方案（即最优子结构的描述）：
+一种是攀登到第n-2层台阶，之后一下迈两个台阶到达n；另外一种是攀登到n-1层台阶，然后走一步到达台阶n。
