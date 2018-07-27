@@ -1,3 +1,35 @@
 860. Lemonade Change
 https://leetcode-cn.com/problems/lemonade-change/description/
 博客：https://blog.csdn.net/lym940928/article/details/80909584
+
+思想更重要
+class Solution {
+public:
+    bool lemonadeChange(vector<int>& bills) {
+        //int five,ten,twenty=0;//这样写是错误的
+        int five = 0, ten = 0, twenty = 0;
+        for(int i=0;i<bills.size();i++){
+            if(bills[i]==5) five++;
+            else if(bills[i]==10){
+                ten++;
+                five--;
+            }
+            else if(bills[i]==20){
+                twenty++;
+                if(ten>0){
+                    ten--;
+                    five--;
+                }
+                else five-=3;
+            }
+            if(five<0)
+                return false;
+        }
+        return true;
+    }
+};
+题目思路
+这是一个关于找零的问题。首先，因为初始没有资本，而且每份柠檬水的售价是5美元。因此，5美元是最“珍贵”的找零资源。
+如果顾客给的是10美元，那么只能找给他一张5美元的。
+如果顾客给的是20美元，因为5美元比较稀缺，因此如果有10美元的钞票，则优先找给他10美元，然后再找一张5美元；否则的话，就直接给三张5美元的钞票。
+如果5美元的数量变为“负”，说明找零失败，返回False；否则就返回True。
