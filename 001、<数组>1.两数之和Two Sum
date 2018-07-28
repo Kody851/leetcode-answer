@@ -9,6 +9,7 @@
 
 
 （2）vector（https://blog.csdn.net/afishhhhhh/article/details/79980359）
+https://www.cnblogs.com/YJthua-china/p/6550960.html
 创建一维vector：
 vector<int> nums;//不指定长度
 vector<int> nums(n); // 指定长度为n 
