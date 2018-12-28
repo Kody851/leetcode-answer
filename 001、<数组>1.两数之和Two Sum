@@ -2,11 +2,10 @@
 中文版 ：https://leetcode-cn.com/problems/two-sum/description/
 1、<数组>Two Sum  
 （1）哈希表：
-定义 Map<Integer, Integer> map = new HashMap<>();
-新增元素 map.put(nums[i], i);
-判断是否存在 map.containsKey(complement)
-取索引值 map.get(complement)
-
+unordered_map<int,int>map;
+map[key]=value;
+if(map.find(i)!=map.end())//找到i
+也可用：map.count(i)!=0
 
 （2）vector（https://blog.csdn.net/afishhhhhh/article/details/79980359）
 https://www.cnblogs.com/YJthua-china/p/6550960.html
@@ -38,3 +37,22 @@ merge(nums1.begin(), nums1.end(),nums2.begin(),nums2.end(),nums);
 
 二维vector
 vector<vector <int> > nums(m ,vector<int>(n));    //m*n的二维vector
+
+@解法：参考（https://www.cnblogs.com/grandyang/p/4130379.html）
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        vector<int>res;
+        unordered_map<int,int>map;
+        for(int i=0;i<nums.size();i++){
+            if(map.count(target-nums[i])){
+            //if(map.find(target-nums[i])!=map.end()){  
+                res.push_back(map[target-nums[i]]);
+                res.push_back(i);//这个顺序是重要的
+                return res;
+            }
+            map[nums[i]]=i;
+        }
+        return res;
+    }
+};
