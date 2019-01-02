@@ -5,6 +5,22 @@
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
+        if(!head) return head;
+        ListNode* cur=head;
+        ListNode* pre=NULL;
+        ListNode* aft=NULL;
+        while(cur){
+            aft=cur->next;
+            cur->next=pre;
+            pre=cur;
+            cur=aft;
+        }
+        return pre;
+    }
+};
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
         ListNode* first=NULL;
         ListNode* second=head;
         ListNode* third=NULL;
@@ -19,4 +35,22 @@ public:
     }
 };
 
-2、递归（待续！！！！！！！！！！！！！！！！！！）
+2、递归
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        if(!head||!head->next) return head;
+        ListNode* res=reverseList(head->next);//递归函数里面带有下面的head->next语句
+        head->next->next=head;//宏观上想，head->next之后已然反序，只需把head->next指向head
+        head->next=NULL;
+        return res;
+    }
+};
