@@ -32,3 +32,22 @@ public:
         return sortedHead->next;
     }
 };
+class Solution {
+public:
+    ListNode* insertionSortList(ListNode* head) {
+        if(!head||!head->next) return head;
+        ListNode* sort=new ListNode(-1);
+        while(head){
+            ListNode* cur=sort;//已排序的段（不断更新）
+            ListNode* next=head->next;
+            while(cur->next&&cur->next->val<=head->val){
+                cur=cur->next;
+            }
+            head->next=cur->next;
+            cur->next=head;//插入是有顺序的
+            
+            head=next;
+        }
+        return sort->next;
+    }
+};
