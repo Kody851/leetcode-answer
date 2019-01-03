@@ -27,7 +27,7 @@ bool isPerfectSquare(int num) {
 2、二分法
 bool isPerfectSquare(int num) {
         //if(num==1) return true;
-        long left=0,right=num;//此题可以用right=num/2
+        long left=0,right=num;//此题可以用right=num/2   需要用long，否则超时
         while(left<=right){//left=right时也需考虑
             long mid=(left+right)/2;
             long val=mid*mid;
