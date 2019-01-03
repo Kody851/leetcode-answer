@@ -14,3 +14,18 @@ public:
         return false;//其他，错
     }
 };
+不需要记ASCII：
+class Solution {
+public:
+    bool detectCapitalUse(string word) {
+        int num_upper=0;
+        for(int i=0;i<word.size();i++){
+            if(word[i]>='A'&&word[i]<='Z')
+                num_upper++;
+        }
+        if(num_upper==word.size()) return true;
+        else if(num_upper==0) return true;
+        else if(num_upper==1&&word[0]>='A'&&word[0]<='Z') return true;
+        else return false;
+    }
+};
