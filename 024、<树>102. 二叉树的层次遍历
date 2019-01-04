@@ -41,7 +41,7 @@ public:
     }
     
 };
-2、递归（待续！！！）
+2、递归
 class Solution {
 public:
     vector<vector<int>> levelOrder(TreeNode* root) {
@@ -51,7 +51,7 @@ public:
     }
     void levelorder(TreeNode *root, int level, vector<vector<int> > &res) {
         if (!root) return;
-        if (res.size() == level) res.push_back({});
+        if (res.size() == level) res.push_back({});//当level递归到上一层的个数，我们新建一个空层，继续往里面加数字
         res[level].push_back(root->val);
         if (root->left) levelorder(root->left, level + 1, res);
         if (root->right) levelorder(root->right, level + 1, res);
