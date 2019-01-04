@@ -49,7 +49,7 @@ public:
                 j--; 
             }
             for(int i=0;i<node_vector.size();i++){
-                if(node_vector[i]!=NULL){
+                if(node_vector[i]!=NULL){//本行重要,因为它不存在时，node[i]->left作为空指针添加到tmp中，对结果造成影响。
                     node_vector_temp.push_back(node_vector[i]->left);
                     node_vector_temp.push_back(node_vector[i]->right);
                 }
@@ -62,4 +62,5 @@ public:
 };
  
 知识点 
- node_vector.swap(node_vector_temp)
+ node_vector.swap(node_vector_temp)//用另一内容替代
+ node.clear()//清空
