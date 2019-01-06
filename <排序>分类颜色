@@ -6,12 +6,12 @@ public:
     void QuickSort(vector<int>& nums){
         helper(nums, 0, nums.size()-1);
     }
-    void helper(vector<int> nums, int start, int end){
+    void helper(vector<int>& nums, int start, int end){
         int index=Partition(nums, start, end);
         if(index>start) helper(nums, start, index-1);
-        if(index<end) helper(nums, start+1, end);
+        if(index<end) helper(nums, index+1, end);
     }
-    int Partition(vector<int> nums, int start, int end){
+    int Partition(vector<int>& nums, int start, int end){
         int small=start-1;
         for(int i=start;i<end;i++){
             if(nums[i]<nums[end]){
@@ -22,4 +22,31 @@ public:
         small++; swap(nums[small],nums[end]);
         return small;
     }
+};
+或
+#include <bits/stdc++.h>
+using namespace std;
+int Partition(vector<int>& nums, int start, int end){//&必不可少
+    int small=start-1;
+    for(int i=start;i<end;i++){
+        if(nums[i]<nums[end]){
+            small++;
+            if(small!=i) swap(nums[small],nums[i]);
+        }
+    }
+    small++; swap(nums[small],nums[end]);
+    return small;
+}
+void helper(vector<int>& nums, int start, int end){//&必不可少
+    int index=Partition(nums, start, end);
+    if(index>start) helper(nums, start, index-1);
+    if(index<end) helper(nums, index+1, end);
+}
+int main(){
+    vector<int> a={4,5,1,2,3};
+    helper(a,0,a.size()-1);
+    for(int i=0;i<a.size();++i){
+        cout<<a[i];
+    }
+    return 0;
 }
