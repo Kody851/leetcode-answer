@@ -5,8 +5,9 @@ https://leetcode-cn.com/problems/minimum-absolute-difference-in-bst/description/
 [LeetCode] 729. My Calendar I 731. My Calendar II 732. My Calendar III 题解
 https://www.cnblogs.com/FannyChung/p/7896415.html
 
-知识点：C++ 二叉树的先序，中序，后序遍历 - SunZhR - 博客园 https://www.cnblogs.com/SunZhR/p/6594168.html
-
+知识点：1、
+1、C++ 二叉树的先序，中序，后序遍历 - SunZhR - 博客园 https://www.cnblogs.com/SunZhR/p/6594168.html
+2、int res=INT_MAX；
 class Solution {
 public:
     int getMinimumDifference(TreeNode* root) {
