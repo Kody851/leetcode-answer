@@ -1,3 +1,25 @@
 75. Sort Colors
 https://leetcode-cn.com/problems/sort-colors/description/
 快速排序leetcode
+class Solution{
+public:
+    void QuickSort(vector<int>& nums){
+        helper(nums, 0, nums.size()-1);
+    }
+    void helper(vector<int> nums, int start, int end){
+        int index=Partition(nums, start, end);
+        if(index>start) helper(nums, start, index-1);
+        if(index<end) helper(nums, start+1, end);
+    }
+    int Partition(vector<int> nums, int start, int end){
+        int small=start-1;
+        for(int i=start;i<end;i++){
+            if(nums[i]<nums[end]){
+                small++;
+                if(small!=i) swap(nums[small],nums[i]);
+            }
+        }
+        small++; swap(nums[small],nums[end]);
+        return small;
+    }
+}
