@@ -3,6 +3,8 @@ https://leetcode-cn.com/problems/sort-colors/description/
 
 知识点：
 快速排序leetcode
+快速排序算法的思想和几种实现方式 - man_sion的博客 - CSDN博客 https://blog.csdn.net/man_sion/article/details/70138747
+
 class Solution{
 public:
     void QuickSort(vector<int>& nums){
