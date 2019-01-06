@@ -1,5 +1,7 @@
 75. Sort Colors
 https://leetcode-cn.com/problems/sort-colors/description/
+
+知识点：
 快速排序leetcode
 class Solution{
 public:
@@ -50,3 +52,6 @@ int main(){
     }
     return 0;
 }
+博客：
+【算法杂谈 1】 从一道面试题再看三路快排partition_慕课手记 https://www.imooc.com/article/16141
+LeetCode 颜色分类 - 简书 https://www.jianshu.com/p/ea9de4ef1ee0
