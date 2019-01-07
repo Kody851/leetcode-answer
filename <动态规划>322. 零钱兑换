@@ -13,7 +13,7 @@ public:
         for(int i=1;i<=amount;i++){
             for(int j=0;j<coins.size();j++){
                 if(i>=coins[j]){
-                    dp[i]=min(dp[i],dp[i-coins[j]]+1);
+                    dp[i]=min(dp[i],dp[i-coins[j]]+1);//通过j遍历coins，不断更新dp[i]，找到最小的。初始是最大的
                 }
             }
         }
