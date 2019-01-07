@@ -28,6 +28,32 @@ public:
         return true;
     }
 };
+2019/1/7
+class Solution {
+public:
+    bool lemonadeChange(vector<int>& bills) {
+        if(bills.empty()) return true;
+        int n5=0,n10=0;
+        for(int i=0;i<bills.size();i++){
+            if(bills[i]==5) n5++;
+            else if(bills[i]==10){
+                n5--; 
+                n10++;
+            }
+            else{
+                if(n10>0){
+                    n10--;
+                    n5--;
+                }
+                else{
+                    n5=n5-3;
+                }        
+            }
+            if(n5<0) return false;
+        }
+        return true;
+    }
+};
 题目思路
 这是一个关于找零的问题。首先，因为初始没有资本，而且每份柠檬水的售价是5美元。因此，5美元是最“珍贵”的找零资源。
 如果顾客给的是10美元，那么只能找给他一张5美元的。
