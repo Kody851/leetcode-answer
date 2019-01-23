@@ -1,6 +1,7 @@
 101. Symmetric Tree
 https://leetcode-cn.com/problems/symmetric-tree/description/
 博客 ：https://blog.csdn.net/feliciafay/article/details/18397183
+给定一个二叉树，检查它是否是镜像对称的。
 1、递归
 /**
  * Definition for a binary tree node.
