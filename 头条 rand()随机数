@@ -1,0 +1,89 @@
+一、等概率生成
+1、 rand5生成rand3
+int Rand3()
+{
+    int x;
+    do
+    {
+        x = Rand5();//do会先执行一遍，再判断while条件
+    }
+    while (x >= 3);//舍弃
+    return x;
+}
+2、rand3生成rand5
+int Rand5()
+{
+    int x;
+    do
+    {
+        x = Rand3() * 3 + Rand3();//扩增至等可能的[0,8]
+    }
+    while (x >= 5);
+    return x;
+}
+3、rand5生成rand7
+int Rand7()
+{
+    int x;
+    do
+    {
+        x = Rand5() * 5 + Rand5();//扩增至等可能的[0,24]
+    }
+    while (x >= 21);//可以写作while (x >= 7);但是计算大部分浪费了，因此选择“最大的不超过24的7的整数倍”：21
+    return x % 7;
+}
+4、rand_m生成rand_n。已知random_m()随机数生成器的范围是[0, m） 求random_n()生成[0, n）范围的函数，m < n && n <= m *m。
+设t为n的最大倍数，且满足t<m*m，即 t = ((m*m)/n)*n;
+int Rand_n()
+{
+    int x;
+    do
+    {
+        t = ((m * m) / n) * n;
+        x = Rand_m() * m + Rand_m ();
+    }
+    while (x >= t);
+    return x % n;
+}
+二、不等概率生成
+1、 如何产生如下概率的随机数？0出1次，1出现2次，2出现3次，n-1出现n次？
+int random(int size)//如size=3,等可能0,1,2
+{
+    while(1)
+    {
+        int m = rand(size);
+        int n = rand(size);
+        if(m + n < size)//去掉1+2、2+1、2+2
+            return m + n;//剩余刚好1个0,2个1,3个2
+    }
+}
+2、rand以不等概率生成01, 如何以1/n的等概率产生1~n之间的任意一个数?
+第一步：由rand()函数产生Rand()函数，Rand()函数等概率产生0和1。
+int Rand()
+{
+    while(1)
+    {
+        int i1 = rand();
+        int i2 = rand();
+        if(i1 == 0 && i2 == 1)
+            return 1;
+        else if(i1 == 1 && i2 == 0)
+            return 0;
+    }
+}
+第二步：计算整数n的二进制表示所拥有的位数k，k = 1 +log2n（log以2为底n）
+第三步：调用k次Rand()函数，得到一个长度为k的0和1序列，以此序列所形成的整数即为1--n之间的数字。
+int newRand()
+{
+    while(1)
+    {
+        int result = 0;
+        for(int i = 0 ; i < k ; ++i)
+        {
+            if(Rand() == 1)
+                result |= (1 << i);
+        }
+        if(result <= n)
+            return result;
+    }
+}
