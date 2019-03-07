@@ -2,7 +2,7 @@
 https://leetcode-cn.com/problems/longest-palindromic-subsequence/description/
 博客：https://www.cnblogs.com/grandyang/p/6493182.html?utm_source=itdadao&utm_medium=referral
 https://blog.csdn.net/xiaocong1990/article/details/54976319
-
+扩展：最长回文子串https://www.jianshu.com/p/c82cada7e5b0
 class Solution {
 public:
     int longestPalindromeSubseq(string s) {
