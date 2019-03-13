@@ -31,6 +31,7 @@ public:
         for(int i =1; tem; i++)
         {
             if(rand()%i==0) val = tem->val;//rand()%i可获得[0,i-1]之间的随机数，1/i的概率取0
+            //if(rand()%i<k) val = tem->val;//rand()%i可获得[0,i-1]之间的随机数，k/i的概率取[0,k-1]
             tem = tem->next;
         }
         return val;
