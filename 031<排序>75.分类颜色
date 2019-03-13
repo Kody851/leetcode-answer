@@ -11,6 +11,7 @@ public:
         helper(nums, 0, nums.size()-1);
     }
     void helper(vector<int>& nums, int start, int end){
+        if(start==end) return;
         int index=Partition(nums, start, end);
         if(index>start) helper(nums, start, index-1);
         if(index<end) helper(nums, index+1, end);
