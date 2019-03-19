@@ -1,6 +1,11 @@
 Count Primes
 中文：https://leetcode-cn.com/problems/count-primes/description/
 [LeetCode-204] Count Primes（0~n 有多少个质数—4种方法求解） - CSDN博客 https://blog.csdn.net/xy010902100449/article/details/49361263
+统计所有小于非负整数 n 的质数的数量。
+示例:
+输入: 10
+输出: 4
+解释: 小于 10 的质数一共有 4 个, 它们是 2, 3, 5, 7 。
 
 1、
 class Solution {
