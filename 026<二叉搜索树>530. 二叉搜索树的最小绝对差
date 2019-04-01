@@ -20,9 +20,8 @@ https://leetcode-cn.com/problems/minimum-absolute-difference-in-bst/description/
 https://www.cnblogs.com/FannyChung/p/7896415.html
 
 知识点：1、
-1、https://www.cnblogs.com/llhthinker/p/4747962.html
-C++ 二叉树的先序，中序，后序遍历 - SunZhR - 博客园 https://www.cnblogs.com/SunZhR/p/6594168.html
-https://www.cnblogs.com/llhthinker/p/4747962.html
+C++ 二叉树的先序，中序，后序遍历 - SunZhR - 博客园  https://www.cnblogs.com/SunZhR/p/6594168.html
+                                 https://www.cnblogs.com/llhthinker/p/4747962.html
 2、int res=INT_MAX；
 class Solution {
 public:
@@ -61,3 +60,101 @@ public:
         return minDiff;
     }
 };
+
+void SqlPreOrder(TreeNode* root)//先序非递归遍历
+ 11 {
+ 12     stack<TreeNode*> s;
+ 13     TreeNode* p=root;
+ 14     while(p || !s.empty())
+ 15     {
+ 16         if(p)
+ 17         {
+ 18             cout<<p->val<<" ";
+ 19             s.push(p);
+ 20             p=p->left;
+ 21         }
+ 22         else
+ 23         {
+ 24             p=s.top();
+ 25             p=p->right;
+ 26             s.pop();
+ 27         }
+ 28     }
+ 29 }
+ 30 
+ 31 
+ 32 
+ 33 void InOrder(TreeNode* root)//中序递归遍历
+ 34 {
+ 35     if(root!=NULL)
+ 36     {
+ 37         InOrder(root->left);
+ 38         cout<<root->data<<" ";
+ 39         InOrder(root->right);
+ 40     }
+ 41 }
+ 42 void SqInOrder(TreeNode* root)//中序非递归遍历
+ 43 {
+ 44     stack<TreeNode*> s;
+ 45     TreeNode*p=root;
+ 46     while(p || !s.empty())
+ 47         if(p)
+ 48         {
+ 49             s.push(p);
+ 50             p=p->left;
+ 51         }
+ 52         else
+ 53         {
+ 54             p=s.top();
+ 55             cout<<p->val<<" ";
+ 56             s.pop();
+ 57             p=p->right;
+ 58         }
+ 59 }
+ 60 
+ 61 
+ 62 
+ 63 void PostOrder(BiTree T)//后序递归遍历
+ 64 {
+ 65     if(T!=NULL)
+ 66     {
+ 67         PostOrder(T->lchild);
+ 68         PostOrder(T->rchild);
+ 69         cout<<T->data<<" ";
+ 70     }
+ 71 }
+ 72 
+ 73 //后序非递归遍历1思路：因为后序非递归遍历二叉树的顺序是先访问左子树，再访问后子树，最后
+ 74 //访问根结点。当用堆栈来存储结点，必须分清返回根结点时，是从左子树返回的，还是从右子树
+ 75 //返回的。所以，使用辅助指针r，其指向最近访问过的结点。
+ 76 void SqlPostOrder1(TreeNode* root)//后序非递归遍历1
+ 77 {
+ 78     stack<TreeNode*> s;
+ 79     TreeNode* p=root;
+        TreeNode* pre=NULL;
+ 80     while(p || !s.empty())
+ 81     {
+ 82         if(p)                             //走到最左边
+ 83         {
+ 84             s.push(p);
+ 85             p=p->left;
+ 86         }
+ 87         else                             //向右
+ 88         {
+ 89             p=s.top();//取栈顶结点
+ 90             if(p->right && p->right!=pre)//如果右子树存在，且未被访问过；这时根节点是从左子树返回的
+ 91             {
+ 92                 p=p->right;
+ 93                 s.push(p);
+ 94                 p=p->left;             //再走到最左
+ 95             }
+ 96             else                         //否则，访问栈顶结点并弹出；这时根节点是从右子树返回的或者右子树为空从左子树返回的
+ 97             {
+ 98                 cout<<p->val<<" ";
+ 99                 pre=p;                     //记录该结点
+100                 s.pop();
+101                 p=NULL;                     //结点访问完后，重置p指针;下一次p从89行赋值
+102             }
+103         }
+104     }
+105 }
